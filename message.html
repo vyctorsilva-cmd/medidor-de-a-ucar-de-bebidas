@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medição de Açúcar nas Bebidas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #ff3b3b;
+    }
+
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+      text-align: center;
+    }
+
+    input, button {
+      padding: 10px;
+      margin: 10px 0;
+      width: 90%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #ff3b3b;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e03030;
+    }
+
+    .resultado {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Medidor de Açúcar</h1>
+  <div class="container">
+    <p>Digite o nome da bebida:</p>
+    <input type="text" id="bebida" placeholder="Ex: Coca-Cola">
+    <button onclick="medirAcucar()">Ver Açúcar</button>
+    <div class="resultado" id="resultado"></div>
+  </div>
+
+  <script>
+    const bebidas = {
+      "coca-cola": 39,
+      "guaraná antarctica": 37,
+      "pepsi": 41,
+      "suco de laranja": 20,
+      "suco de uva": 24,
+      "red bull": 27,
+      "água": 0,
+      "chá gelado": 18
+    };
+
+    function medirAcucar() {
+      const entrada = document.getElementById("bebida").value.toLowerCase().trim();
+      const resultado = document.getElementById("resultado");
+      if (bebidas[entrada] !== undefined) {
+        const acucar = bebidas[entrada];
+        const colheres = (acucar / 4).toFixed(1);
+        resultado.innerHTML = `🍹 ${entrada.toUpperCase()} contém <strong>${acucar}g</strong> de açúcar (≈ ${colheres} colheres de chá).`;
+      } else {
+        resultado.innerHTML = "⚠️ Bebida não encontrada. Tente outro nome.";
+      }
+    }
+  </script>
+</body>
+</html>
